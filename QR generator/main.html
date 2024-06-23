@@ -1,0 +1,52 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR GENERATOR</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <p>Enter the Value / URL :</p>
+      <input
+        type="text"
+        name=""
+        id="QrText"
+        placeholder="Enter your Text or URL"
+      />
+      <button class="btn">Generate</button>
+
+      <div class="QrImg">
+        <img src="" alt="" id="QR" />
+      </div>
+    </div>
+
+    <script>
+      let QrText = document.getElementById("QrText");
+      let QR = document.getElementById("QR");
+      let btn = document.querySelector(".btn");
+      const container = document.querySelector(".container");
+      const QrImg = document.querySelector(".QrImg");
+
+      const newp = document.createElement("p");
+
+      btn.addEventListener("click", (event) => {
+        QR.src =
+          "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data= " +
+          QrText.value;
+        newp.textContent = `Here is a QR Code for " ${QrText.value} ".`;
+        container.append(newp);
+      });
+      document.addEventListener("keydown", (event) => {
+        // console.log(event.key);
+        if (event.key === "Enter") {
+          QR.src =
+            "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data= " +
+            QrText.value;
+          newp.textContent = `Here is a QR Code for " ${QrText.value} ".`;
+          container.append(newp);
+        }
+      });
+    </script>
+  </body>
+</html>
